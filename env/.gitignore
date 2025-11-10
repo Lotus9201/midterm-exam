@@ -1,6 +1,0 @@
-# 忽略 SQLite 資料庫檔案
-*.db
-# 忽略 .vscode 目錄
-.vscode/
-
-.env
