@@ -1,0 +1,2 @@
+#.py 檔案使用 LF 換行符
+*.py text eol=lf
