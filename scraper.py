@@ -29,34 +29,34 @@ def scrape_books():
         driver.get(url)
 
         try:
-            # 等待書籍區塊載入
+            # 等待書籍載入
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "div.table-searchbox div.table-td"))
             )
             time.sleep(0.5)
 
-            # 滑到底部，確保懶加載
+            # 滑到底部
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(0.5)
 
             items = driver.find_elements(By.CSS_SELECTOR, "div.table-searchbox div.table-td")
 
             for item in items:
-                # 書名與連結
+                # 書名
                 try:
                     a_tag = item.find_element(By.CSS_SELECTOR, "h4 a")
                     title = a_tag.text.strip()
                     link = a_tag.get_attribute("href")
                 except:
-                    title = "N/A"
-                    link = "N/A"
+                    title = "查無資料"
+                    link = "查無資料"
 
                 # 作者
                 try:
                     author_tags = item.find_elements(By.CSS_SELECTOR, "p.author a")
-                    author = ", ".join([a.text.strip() for a in author_tags]) if author_tags else "N/A"
+                    author = ", ".join([a.text.strip() for a in author_tags]) if author_tags else "查無資料"
                 except:
-                    author = "N/A"
+                    author = "查無資料"
 
                 # 價格
                 try:
