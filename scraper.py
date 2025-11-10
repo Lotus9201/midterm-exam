@@ -8,10 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
 def scrape_books():
-    """
-    使用 Selenium 爬取博客來 LLM 書籍資料（全部分頁）。
-    回傳書籍列表，每本書為 dict: title, author, price, discount_rate, link
-    """
+
     # Headless 模式
     options = Options()
     options.add_argument("--headless=new")
@@ -25,7 +22,7 @@ def scrape_books():
     books = []
 
     for page in range(1, total_pages + 1):
-        url = f"https://search.books.com.tw/search/query/cat/1/sort/1/v/1/spell/3/ms2/ms2_1/page/{page}/key/{keyword}"
+        url = f"https://search.books.com.tw/search/query/cat/1/sort/1/v /1/spell/3/ms2/ms2_1/page/{page}/key/{keyword}"
         print(f"正在爬取第 {page} 頁...")
         driver.get(url)
 
