@@ -42,7 +42,7 @@ def scrape_books():
             items = soup.select("div.table-searchbox div.table-td")
 
             for item in items:
-                # 書名與連結
+                # 書名
                 a_tag = item.select_one("h4 a")
                 title = a_tag.text.strip() if a_tag else "查無資料"
                 link = "https:" + a_tag.get("href") if a_tag and a_tag.get("href") else "查無資料"
@@ -51,7 +51,7 @@ def scrape_books():
                 author_tags = item.select("p.author a")
                 author = ", ".join([a.text.strip() for a in author_tags]) if author_tags else "查無資料"
 
-                # 價格處理
+                # 價格
                 price_ul = item.select_one("ul.price.clearfix")
                 price_text = price_ul.text.strip() if price_ul else ""
                 price_digits = re.findall(r"\d+", price_text)
